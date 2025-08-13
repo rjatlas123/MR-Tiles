@@ -1,0 +1,159 @@
+.concept-completion-section {
+  background-color: black;
+  color: rgb(20, 19, 19);
+  padding: 60px 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: silver;
+}
+
+.concept-card {
+  background: white;
+  border: none;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.concept-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 8px 20px rgba(192, 192, 192, 0.3);
+}
+
+.step-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.fullwidth-image-container {
+  margin-top: 50px;
+}
+
+.fullwidth-image {
+  width: 100%;
+  height: 400px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Sliding Animations */
+.slide-step {
+  opacity: 0;
+  animation-duration: 0.9s;
+  animation-fill-mode: forwards;
+}
+
+.slide-left {
+  transform: translateX(-60px);
+  animation-name: slideInFromLeft;
+}
+
+.slide-right {
+  transform: translateX(60px);
+  animation-name: slideInFromRight;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideInUp 1.2s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Keyframes */
+@keyframes slideInFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Delay for each card */
+.slide-step:nth-child(1) { animation-delay: 0.2s; }
+.slide-step:nth-child(2) { animation-delay: 0.4s; }
+.slide-step:nth-child(3) { animation-delay: 0.6s; }
+.slide-step:nth-child(4) { animation-delay: 0.8s; }
+
+.fullwidth-image-container {
+  position: relative;
+  margin-top: 50px;
+}
+
+.fullwidth-image {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay Styling */
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 15px;
+  animation: fadeInOverlay 1.2s ease forwards;
+}
+
+.overlay-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.overlay-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  color: silver;
+}
+
+.overlay-desc {
+  font-size: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+  color: #ddd;
+}
+
+/* Animation for overlay */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,129 @@
+.homepage {
+  background: black;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* Heading Animation */
+.main-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.animate-heading {
+  animation: fadeInDown 1s ease-in-out forwards;
+}
+
+/* Text Card Animation */
+.animate-left {
+  animation: slideInLeft 1s ease forwards;
+}
+
+.animate-right {
+  animation: slideInRight 1s ease forwards;
+}
+
+/* Card Styling */
+.text-card {
+  background: rgb(87, 86, 86);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.text-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Card Title */
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* Description */
+.card-description {
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Button Styling */
+.explore-btn {
+  background: white;
+  color: black;
+  border-radius: 25px;
+  font-weight: bold;
+  border: none;
+  padding: 8px 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Glowing Button Animation */
+.glow-btn {
+  box-shadow: black,
+              rgb(164, 161, 161);
+  transition: all 0.3s ease;
+}
+
+.glow-btn:hover {
+  box-shadow: black,
+             rgb(191, 189, 189);
+}
+
+/* Image Card */
+.image-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+}
+
+.tile-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

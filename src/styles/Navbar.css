@@ -1,0 +1,104 @@
+/* Main Navbar styling */
+.tile-navbar {
+  background:rgb(87, 86, 86);
+  padding: 0.8rem 0;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.tile-navbar .navbar-brand {
+  color: white !important;
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  width: 40px;
+  margin-right: 10px;
+}
+
+/* Navbar links */
+.nav-item-animated {
+  position: relative;
+  color: white;
+  font-size: 1rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-item-animated:hover {
+  color: #fffacd !important;
+}
+
+/* Animated underline effect */
+.nav-item-animated::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item-animated:hover::after {
+  width: 100%;
+}
+
+/* On scroll shrink effect */
+.tile-navbar.scrolled {
+  background: black;
+  padding: 0.5rem 0;
+}
+/* Contact button style */
+.contact-btn {
+  background: white;
+  color: black;
+  padding: 6px 16px;
+  border-radius: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid white;
+}
+
+/* Animated hover background */
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: silver;
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+
+.contact-btn:hover::before {
+  left: 0;
+}
+
+.contact-btn:hover {
+  color: white !important;
+}
+
+.contact-btn span {
+  position: relative;
+  z-index: 1;
+}
+/* Make cards fill full height of the column */
+.text-card, .image-card {
+  height: 100%;
+}
+
+/* Ensure the image fills the card height */
+.image-card .tile-image {
+  height: 100%;
+  object-fit: cover;
+}

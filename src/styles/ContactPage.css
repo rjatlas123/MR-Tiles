@@ -1,0 +1,105 @@
+.contact-page {
+  background: linear-gradient(135deg, #000, #2f2f2f);
+  color: #e0e0e0;
+  padding: 60px 0;
+}
+
+.contact-heading {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  background: linear-gradient(90deg, silver, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.contact-sub {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.2s forwards;
+}
+
+/* Form Styles */
+.contact-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: silver;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, silver, #777);
+  border: none;
+  font-weight: bold;
+  color: black;
+  border-radius: 30px;
+  padding: 8px 20px;
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #fff, silver);
+}
+
+/* Image */
+.contact-image {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Business Info */
+.business-info {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.business-info h4 {
+  color: silver;
+  margin-bottom: 10px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-title { animation: fadeInDown 1s ease forwards; }
+.animate-sub { animation: fadeInUp 1s ease forwards; }
+.animate-left { animation: slideInLeft 1s ease forwards; }
+.animate-right { animation: slideInRight 1s ease forwards; }
+.animate-up { animation: fadeInUp 1s ease forwards; }
