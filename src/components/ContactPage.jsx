@@ -4,30 +4,70 @@ import "../styles/ContactPage.css";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 const ContactPage = () => {
-   const [formData, setFormData] = useState({
+//    const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     phone: "",
+//     message: ""
+//   });
+//  const handleChange = (e) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+
+//   const subject = encodeURIComponent(`New Contact Form Message from ${formData.name}`);
+//   const body = encodeURIComponent(
+//     `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
+//   );
+
+//   window.location.href = `mailto:satheeshaswathi@gmail.com?subject=${subject}&body=${body}`;
+// };
+
+const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    message: ""
+    message: "",
   });
- const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-const handleSubmit = (e) => {
-  e.preventDefault();
 
-  const subject = encodeURIComponent(`New Contact Form Message from ${formData.name}`);
-  const body = encodeURIComponent(
-    `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
-  );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  window.location.href = `mailto:satheeshaswathi@gmail.com?subject=${subject}&body=${body}`;
-};
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill in all fields.");
+      return;
+    }
 
+    setLoading(true);
+    try {
+      const res = await fetch("https://mr-tiles-server.vercel.app/api/contact/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
+      const data = await res.json();
+      if (data.success) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="contact-page"id="contact">
@@ -40,46 +80,118 @@ const handleSubmit = (e) => {
         <Row className="align-items-center mt-5">
           {/* Contact Form */}
           <Col md={6} className="animate-left">
-            <Form className="contact-form"  onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>First name*</Form.Label>
-                <Form.Control type="text" name="name"
- placeholder="Enter first name" value={formData.name}
-              onChange={handleChange}
- required />
-              </Form.Group>
 
-              {/* <Form.Group className="mb-3">
-                <Form.Label>Last name*</Form.Label>
-                <Form.Control type="text" placeholder="Enter last name" required />
-              </Form.Group> */}
+            <div className="contact-form">
+          <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+          {/* <form className="space-y-5" onSubmit={handleSubmit}>
+            <div>
+              <label className="block mb-2 font-medium">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                 className="mb-3"
+                placeholder="Your Name"
+              />
+            </div>
+            <div>
+              <label className="block mb-2 font-medium">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="mb-3"
+                placeholder="Your Email"
+              />
+            </div>
+            <div>
+              <label className="block mb-2 font-medium">Message</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="5"
+                 className="mb-3"
+                placeholder="Your Message"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`submit-btn${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+          </form> */}
+          <form onSubmit={handleSubmit}>
+    {/* Name */}
+    <div className="mb-3">
+      <label htmlFor="name" className="form-label fw-semibold">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        className="form-control"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Email*</Form.Label>
-                <Form.Control type="email" name="email"
-              placeholder="Enter email" value={formData.email}
-              onChange={handleChange}
- required />
-              </Form.Group>
+    {/* Email */}
+    <div className="mb-3">
+      <label htmlFor="email" className="form-label fw-semibold">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        className="form-control"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control type="tel"  name="phone"
- placeholder="Enter phone number" value={formData.phone}
-              onChange={handleChange}
- />
-              </Form.Group>
+    {/* Message */}
+    <div className="mb-3">
+      <label htmlFor="message" className="form-label fw-semibold">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        className="form-control"
+        rows="5"
+        placeholder="Write your message"
+        required
+      ></textarea>
+    </div>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Message</Form.Label>
-                <Form.Control as="textarea"  name="message"
- rows={4} placeholder="Your message" value={formData.message}
-              onChange={handleChange}
- />
-              </Form.Group>
-
-              <Button type="submit" className="submit-btn">Submit</Button>
-            </Form>
+    {/* Submit */}
+    <div className="text-center">
+      <button
+        type="submit"
+        disabled={loading}
+        className={`submit-btn ${loading ? "disabled" : ""}`}
+      >
+        {loading ? (
+          <>
+            <span className="spinner-border spinner-border-sm me-2"></span>
+            Sending...
+          </>
+        ) : (
+          "Send Message"
+        )}
+      </button>
+    </div>
+  </form>
+        </div>
           </Col>
 
           {/* Image & Map */}
